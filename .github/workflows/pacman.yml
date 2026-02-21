@@ -8,14 +8,20 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: Platane/snk@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate Pacman
+        uses: Platane/snk@v3
         with:
           github_user_name: tusharsb011-ctrl
           outputs: |
             output/pacman-contribution-graph.svg
 
-      - uses: EndBug/add-and-commit@v9
+      - name: Commit and Push
+        uses: EndBug/add-and-commit@v9
         with:
           add: "output/pacman-contribution-graph.svg"
           message: "Update Pacman graph"
